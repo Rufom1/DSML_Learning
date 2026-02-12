@@ -1,0 +1,168 @@
+# Machine Learning Framework 
+
+1. Problem Definition: What Problem are we trying to solve? 
+    - Define the problem type.
+2. Data: What kind of data do we have? 
+    - Structured data 
+    - Unstructured 
+3. Evaluation: What defines success?
+    - Create metrics
+4. Feature: What do we already know about the data?
+    - Feature Type: Numberical features, categorical features, etc.
+        - Translateable into patterns 
+5. Modeling: Based on our problem and data, what model should we use?
+    - Problem -> Model associations
+6. Experimentaiton: How could we imrpove/What can we try next?
+    - Iterate over steps to improve 
+
+# Problem Definition
+1. When shouldn't you use machine learning? 
+    - Will a simple hand-coded instruction set work? 
+2. Main types of machine learning problems:
+    a. Supervised Learning
+        - Has data & labels
+        i. Problem Types:
+            - Classification 
+                - Binary classification = 1 or 2 classes. (True or False)
+                - Multi-Class Classification = Many different classes (Predict type of dog breed)
+            - Regression: Ex. How much will a house sell for?
+                - Trying to predict a continuous number. (Can go up or down)
+    b. Unspervised Learning
+        - Has data but no labels
+        - utilizes grouping and patterns 
+        i. Problem Types:
+            - Clustering
+    c. Transfer Learning: "Can I leverage an existing type of ML model?"
+        - Leverages what one machine learning model has learned in another model
+    d. Reinforecement Learning (less common)
+        - Program performing actions in a defined space and tracking fails vs. success
+            - e.x. Chess Program
+        
+# Types of Data
+1. Structured Data: All samples are in a similar format.
+2. Unstructured: 
+3. Within Data Types:
+    a. Static Data (.csv)
+        - Values that don't change much over time
+    b. Streaming
+        - Data changes over time.
+
+# Data Science Workflow Example
+1. Static Data 
+    - Typically structured, static; CSV file 
+2. Read into notebook & Explore
+    - Transform in Pandas 
+3. Generate Insights 
+    - Create graphs & analysis in matplotlib
+4. Build ML models on data using scikit Learning
+
+# Evaluation
+- Example metrics: Accuracy %, False positive rate 
+1. Types of Metrics: 
+    a. Classification
+        - Accuracy
+        - Precision
+        - Recall
+    b. Regression
+        - Mean absolute error (MAE)
+        - Mean squared error (MSE)
+        - Root mean squared error (RMSE)
+    c. Recommendation
+        - Precision at K 
+- Question: "What do you measure?"
+
+# Features
+1. Types of Features
+    - Numerical features
+        - Values 
+    - Categorical features
+        - Choices 
+    - Derived features: Referred to as "Feature Engineering"
+        - Feature generated from existing features
+2. Efficacy of features:
+    - Featurs work best when multiple examples of features exist
+3. Feature Coverage
+    - All or most samples are covered by a feature (have some value of that feature)
+
+# Modeling - Part 1
+- Data Selection: Broken into 3 sets; Training, Validation, Testing 
+    - Compared vs. real world outcomes
+    - Data split into multiple sets: Training, Validation, Testing
+        - Ex. College Course:
+            - Course Material = Training Set 
+            - Practice Exam = Validation Set
+            - Final Exam = Testing Set 
+        - Data set split 
+            - 70-80% Training Split 
+            - 10-15% Validation split
+                -> Model tuning occurs here
+            - 10-15% Test Split
+    - Generalization = How well the model performs when encountering new data 
+        - During training model sets should never overlap 
+
+# Modeling - Part 2
+- Choosing a Model. What kind of machine learning algorithm to use? 
+- Data-Type Based Selection
+    1. Structured Data: Decision Trees 
+    2. Unstructured: Deeplearning, Neural Network, Transfer Learning
+
+# Modeling - Part 3
+- Tuning a model. How do we meet the required metrics?
+- Depends on the type of model.
+    - Random Forrest: Can adjust number of trees 
+    - Neural Network: Can adjust the number of layers
+- Machine learning models have hyperparameters you can adjust 
+- Tuning can take place on training or validation sets
+
+# Modeling - Part 4
+- Evaluate how model performs on the test set in production 
+    - See how model generalizes: Performs on data it's never seen before. 
+    - Good models should see similar results between sets and generalized data
+- Generalization Errors:
+    1. Underfitting: Performance on Test sets trailing Training sets (by significant margin, ex. 10%ish)
+    2. Overfitting: Performance on Test sets exceeding Training sets 
+        - Can be caused by Data leakage 
+        - Models should never see Test data sets 
+- Data mismatch
+    - Test data has different features than Training data (can cause underfitting) 
+1. Fixes for Underfitting:
+    - Try more advanced model  
+    - Increase model hyperparameters
+    - Reduce amount of features 
+    - Traing longer
+2. Fixes for Overfitting:
+    - Collect more data
+    - Try a less advanced model (uncommon)
+- Model Comparison: Ensure to train "apples to apples"
+    - Compare; Inputs -> Model -> Outputs 
+    - Evalute trade offs in Accuracy v Training Time v Prediction Time
+- Avoid over/underfitting 
+    - Head towards generality
+- Keep the sets different at all costs
+- Compare apples to apples
+- One best Performance metric does not equal the best model
+
+
+Overfitting and Underfitting Definitions
+Before we get into the experimentation side of things, it's worth having a little reminder of overfitting and underfitting are.
+
+All experiments should be conducted on different portions of your data.
+    - Training data set — Use this set for model training, 70–80% of your data is the standard.
+    - Validation/development data set — Use this set for model hyperparameter tuning and experimentation evaluation, 10–15% of your data is the standard.
+    - Test data set — Use this set for model testing and comparison, 10–15% of your data is the standard.
+
+These amounts can fluctuate slightly, depending on your problem and the data you have.
+
+Poor performance on training data means the model hasn’t learned properly and is underfitting. Try a different model, improve the existing one through hyperparameter or collect more data.
+
+Great performance on the training data but poor performance on test data means your model doesn’t generalize well. Your model may be overfitting the training data. Try using a simpler model or making sure your the test data is of the same style your model is training on.
+
+Another form of overfitting can come in the form of better performance on test data than training data. This may mean your testing data is leaking into your training data (incorrect data splits) or you've spent too much time optimizing your model for the test set data. Ensure your training and test datasets are kept separate at all times and avoid optimizing a models performance on the test set (use the training and validation sets for model improvement).
+
+Poor performance once deployed (in the real world) means there’s a difference in what you trained and tested your model on and what is actually happening. Ensure the data you're using during experimentation matches up with the data you're using in production.
+
+# Experimentation
+- Iterate over steps 1-5 to find the best output/results
+1. Define and refine the problem
+2. Perform data evaluation 
+3. Improve the model

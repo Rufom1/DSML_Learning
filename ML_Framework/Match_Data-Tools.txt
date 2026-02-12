@@ -1,0 +1,15 @@
+# Second Step of Machine Learning
+
+1. Environment Setup - Which Tools?
+    - Anaconda: Development Environment 
+        - Write coded
+        - Jupyter Notebook
+    - Coding Tools: Libraries
+        - Pandas
+        - Numpy
+        - matplotlib
+    - Building Models: Step 5.
+        - PyTorch
+        - TensorFlow
+        - Scikit-learn
+
