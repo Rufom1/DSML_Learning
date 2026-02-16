@@ -1,0 +1,2 @@
+curl -L -o local-file.ext \
+  https://raw.githubusercontent.com/OWNER/REPO/branch/path/to/file.ext
